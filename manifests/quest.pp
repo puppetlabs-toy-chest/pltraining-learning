@@ -20,11 +20,6 @@ class learning::quest {
     require => Class['localrepo'],
   }
 
-  package { 'rubygems':
-    ensure => present,
-    require => Class['localrepo'],
-  }
-
   package { 'bundler':
     ensure => present,
     provider => gem,
