@@ -35,7 +35,7 @@ class learning::quest {
   exec { 'bundle install':
     command => '/opt/puppet/bin/bundle install',
     cwd => '/usr/src/courseware-lvm',
-    after => [Exec['install bundler'], Package['nodejs'], Vcsrepo['/usr/src/courseware-lvm']],
+    require => [Exec['install bundler'], Package['nodejs'], Vcsrepo['/usr/src/courseware-lvm']],
   }
 
   exec { 'bundle exec rake update_newest':
