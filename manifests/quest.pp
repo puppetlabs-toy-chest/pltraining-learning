@@ -42,7 +42,7 @@ class learning::quest {
     after => [Package['bundler', 'nodejs'], Vcsrepo['/usr/src/courseware-lvm']],
   }
 
-  exec { 'bundle exec rake update_stable':
+  exec { 'bundle exec rake update_newest':
     cwd => '/usr/src/courseware-lvm',
     after => Exec['bundle install'],
   }
