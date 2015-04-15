@@ -20,10 +20,10 @@ class learning::quest {
     require => Class['localrepo'],
   }
 
-  package { 'bundler':
-    ensure => present,
-    provider => gem,
-    after => Package['rubygems'],
+  exec { 'install bundler':
+    command => '/opt/puppet/bin/gem install bundler',
+    unless => '/opt/puppet/bin/gem bundler -i',
+    require => Exec['install-pe'],
   }
 
   vcsrepo { '/usr/src/courseware-lvm':
@@ -33,8 +33,9 @@ class learning::quest {
   }
 
   exec { 'bundle install':
+    command => '/opt/puppet/bin/bundle install',
     cwd => '/usr/src/courseware-lvm',
-    after => [Package['bundler', 'nodejs'], Vcsrepo['/usr/src/courseware-lvm']],
+    after => [Exec['install bundler'], Package['nodejs'], Vcsrepo['/usr/src/courseware-lvm']],
   }
 
   exec { 'bundle exec rake update_newest':
