@@ -40,7 +40,7 @@ class learning::quest {
 
   exec { 'bundle exec rake update_newest':
     cwd => '/usr/src/courseware-lvm',
-    after => Exec['bundle install'],
+    require => Exec['bundle install'],
   }
 
 }
