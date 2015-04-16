@@ -20,10 +20,14 @@ class learning::quest {
     require => Class['localrepo'],
   }
 
-  exec { 'install bundler':
-    command => '/opt/puppet/bin/gem install bundler',
-    unless => '/opt/puppet/bin/gem bundler -i',
-    require => Exec['install-pe'],
+  file { ['/opt/quest', '/opt/quest/bin', '/opt/quest/gems']:
+    ensure => directory,
+  }
+
+  exec { 'install jekyll':
+    command => '/opt/puppet/bin/gem install jekyll -i /opt/quest/gems -n /opt/quest/bin',
+    unless => '/opt/puppet/bin/jekyll',
+    require => [File['/opt/quest/bin'], File['/opt/quest/gems'], Package['nodejs']],
   }
 
   vcsrepo { '/usr/src/courseware-lvm':
@@ -32,15 +36,9 @@ class learning::quest {
     source   => 'git://github.com/puppetlabs/courseware-lvm.git',
   }
 
-  exec { 'bundle install':
-    command => '/opt/puppet/bin/bundle install',
+  exec { 'rake update_newest':
     cwd => '/usr/src/courseware-lvm',
-    require => [Exec['install bundler'], Package['nodejs'], Vcsrepo['/usr/src/courseware-lvm']],
-  }
-
-  exec { 'bundle exec rake update_newest':
-    cwd => '/usr/src/courseware-lvm',
-    require => Exec['bundle install'],
+    require => [Exec['install-pe'], Exec['install jekyll'], Vcsrepo['/usr/src/courseware-lvm']],
   }
 
 }
