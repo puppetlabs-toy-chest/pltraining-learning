@@ -25,8 +25,8 @@ class learning::quest {
   }
 
   exec { 'install jekyll':
-    command => '/opt/puppet/bin/gem install jekyll -i /opt/quest/gems -n /opt/quest/bin',
-    unless => '/opt/puppet/bin/jekyll',
+    command => '/opt/puppet/bin/gem install jekyll -i /opt/quest/gems -n /opt/quest/bin --source https://rubygems.org/',
+    creates => '/opt/puppet/bin/jekyll',
     require => [File['/opt/quest/bin'], File['/opt/quest/gems'], Package['nodejs']],
   }
 
@@ -36,9 +36,10 @@ class learning::quest {
     source   => 'git://github.com/puppetlabs/courseware-lvm.git',
   }
 
-  exec { 'rake update_newest':
+  exec { 'rake update':
+    command => '/opt/puppet/bin/rake update_newest',
     cwd => '/usr/src/courseware-lvm',
-    require => [Exec['install-pe'], Exec['install jekyll'], Vcsrepo['/usr/src/courseware-lvm']],
+    require => [Exec['install-pe'], Exec['install jekyll'], Vcsrepo['/usr/src/courseware-lvm'], Exec['install rspec']],
   }
 
 }
