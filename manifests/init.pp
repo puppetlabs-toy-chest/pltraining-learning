@@ -25,12 +25,6 @@ class learning {
     source => 'puppet:///modules/learning/README',
   }
 
-  # Install apache2 httpd so the directories exist
-  package { 'httpd':
-    ensure => present,
-    require => Class['localrepo']
-  }
-
   file { '/root/README':
     ensure => file,
     source => 'puppet:///modules/learning/README',
