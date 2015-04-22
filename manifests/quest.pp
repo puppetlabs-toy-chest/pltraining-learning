@@ -4,18 +4,13 @@ class learning::quest {
   $port     = '80'
 
   class { 'apache':
-    default_vhost => false,
-  }
-
-  apache::vhost { 'learning.puppetlabs.vm':
-    port    => $port,
     docroot => $doc_root,
   }
 
   # Create docroot for lvmguide files, so the website files
   # can be put in place
 
-  file { '/var/www/html/questguide':
+  file { $doc_root:
     ensure  => directory,
     owner   => 'apache',
     group   => 'apache',
