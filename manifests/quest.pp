@@ -46,7 +46,7 @@ class learning::quest {
 
   exec { 'rake update':
     command => '/opt/puppet/bin/rake update_newest',
-    cwd => '/usr/src/courseware-lvm',
+    cwd => '/usr/src/courseware-lvm/',
     require => [Exec['install-pe'], Exec['install jekyll'], Vcsrepo['/usr/src/courseware-lvm'], Exec['install rspec']],
   }
 
