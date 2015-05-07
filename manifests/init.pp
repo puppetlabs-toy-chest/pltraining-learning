@@ -9,11 +9,6 @@ class learning {
     cwd  => '/',
   }
 
-  file { '/root/learning.answers':
-    ensure => file,
-    source => 'puppet:///modules/learning/learning.answers',
-  }
-
   # Print this info when we log in, too.
   file {'/etc/motd':
     ensure => file,
