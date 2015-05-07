@@ -75,11 +75,6 @@ class learning {
   file { '/var/lib/hiera':
     ensure => directory,
   }
-  file { '/var/lib/hiera/defaults.yaml':
-    ensure => file,
-    source => 'puppet:///modules/learning/defaults.yaml',
-    require => File['/var/lib/hiera'],
-  }
 
   ## Install learning VM specific things
   include learning::install
