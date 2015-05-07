@@ -86,4 +86,7 @@ class learning {
     require => File['/var/lib/hiera'],
   }
 
+  ## Install learning VM specific things
+  include learning::install
+
 }
