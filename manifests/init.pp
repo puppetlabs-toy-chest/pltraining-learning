@@ -1,4 +1,7 @@
 class learning {
+
+  include learning::quest
+
   File {
     owner => root,
     group => root,
@@ -17,32 +20,6 @@ class learning {
     source => 'puppet:///modules/learning/README',
   }
 
-  # Install apache2 httpd so the directories exist
-  package { 'httpd':
-    ensure => present,
-    require => Class['localrepo']
-  }
-
-  # Create docroot for lvmguide files, so the website files
-  # can be put in place
-  file { '/var/www/html/lvmguide':
-    ensure  => directory,
-    owner   => 'apache',
-    group   => 'apache',
-    mode    => '755',
-    require => Package['httpd'],
-  }
-
-  package { 'tmux':
-    ensure => present,
-    require => Class['localrepo']
-  }
-
-  package { 'unzip':
-    ensure => present,
-    require => Class['localrepo']
-  }
-
   file { '/root/README':
     ensure => file,
     source => 'puppet:///modules/learning/README',
@@ -50,26 +27,6 @@ class learning {
 
   file { '/root/bin':
     ensure => directory,
-  }
-
-  vcsrepo { "/usr/src/courseware-lvm":
-    ensure   => present,
-    provider => git,
-    source   => 'git://github.com/puppetlabs/courseware-lvm.git',
-  }
-
-
-  file { '/root/bin/quest':
-    ensure  => file,
-    mode    => '0755',
-    source  => "/usr/src/courseware-lvm/quest_tool/bin/quest",
-    require => Vcsrepo['/usr/src/courseware-lvm'],
-  }
-
-  exec { 'update_content':
-    command => '/root/bin/quest update',
-    creates => '/root/.testing/VERSION',
-    require => [File['/root/bin/quest'],File['/var/www/html/lvmguide'],Package['unzip']],
   }
 
   file { '/var/lib/hiera':
