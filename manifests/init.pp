@@ -12,11 +12,6 @@ class learning {
     cwd  => '/',
   }
 
-  file { '/root/learning.answers':
-    ensure => file,
-    source => 'puppet:///modules/learning/learning.answers',
-  }
-
   # Print this info when we log in, too.
   file {'/etc/motd':
     ensure => file,
@@ -37,10 +32,8 @@ class learning {
   file { '/var/lib/hiera':
     ensure => directory,
   }
-  file { '/var/lib/hiera/defaults.yaml':
-    ensure => file,
-    source => 'puppet:///modules/learning/defaults.yaml',
-    require => File['/var/lib/hiera'],
-  }
+
+  ## Install learning VM specific things
+  include learning::install
 
 }
