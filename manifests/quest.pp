@@ -19,12 +19,17 @@ class learning::quest {
   }
 
   package { 'tmux':
-    ensure => 'present',
+    ensure  => 'present',
     require => Class['localrepo'],
   }
 
   package { 'nodejs':
-    ensure => present,
+    ensure  => present,
+    require => Class['localrepo'],
+  }
+
+  package { 'graphviz':
+    ensure  => present,
     require => Class['localrepo'],
   }
 
@@ -48,6 +53,12 @@ class learning::quest {
     command => '/opt/puppet/bin/rake update_newest',
     cwd => '/usr/src/courseware-lvm/',
     require => [Exec['install-pe'], Exec['install jekyll'], Vcsrepo['/usr/src/courseware-lvm'], Exec['install rspec']],
+  }
+
+  service { 'puppet':
+    ensure  => stopped,
+    enable  => false,
+    require => Exec['install-pe'],
   }
 
 }
