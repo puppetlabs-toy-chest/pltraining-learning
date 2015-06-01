@@ -1,6 +1,8 @@
-class learning {
+class learning ($git_branch='release') {
 
-  include learning::quest
+  class { '::learning::quest':
+    git_branch => $git_branch
+  }
 
   File {
     owner => root,
