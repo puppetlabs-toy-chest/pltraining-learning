@@ -50,9 +50,10 @@ class learning::quest ($git_branch='release') {
   }
 
   exec { 'rake update':
-    command => "GIT_BRANCH=${git_branch} /opt/puppet/bin/rake update",
-    cwd => '/usr/src/courseware-lvm/',
-    require => [Exec['install-pe'], Exec['install jekyll'], Vcsrepo['/usr/src/courseware-lvm'], Exec['install rspec']],
+    environment => ["GIT_BRANCH=${git_branch}"]
+    command     => "/opt/puppet/bin/rake update",
+    cwd         => '/usr/src/courseware-lvm/',
+    require     => [Exec['install-pe'], Exec['install jekyll'], Vcsrepo['/usr/src/courseware-lvm'], Exec['install rspec']],
   }
 
   service { 'puppet':
