@@ -1,4 +1,4 @@
-class learning::quest {
+class learning::quest ($git_branch='release') {
   
   $doc_root = '/var/www/html/questguide'
   $port     = '80'
@@ -50,7 +50,7 @@ class learning::quest {
   }
 
   exec { 'rake update':
-    command => '/opt/puppet/bin/rake update',
+    command => "GIT_BRANCH=${git_branch} /opt/puppet/bin/rake update",
     cwd => '/usr/src/courseware-lvm/',
     require => [Exec['install-pe'], Exec['install jekyll'], Vcsrepo['/usr/src/courseware-lvm'], Exec['install rspec']],
   }
