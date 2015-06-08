@@ -30,7 +30,7 @@ class learning::quest ($git_branch='release') {
   # Serve Graphite
 
   apache::vhost { "*:${graph_port}":
-    manage_docroot => false
+    manage_docroot => false,
     port           => $graph_port,
     docroot        => '/opt/graphite/webapp',
     wsgi_application_group      => '%{GLOBAL}',
