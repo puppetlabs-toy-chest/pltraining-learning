@@ -88,8 +88,14 @@ class learning::quest ($git_branch='release') {
     require => Class['localrepo'],
   }
 
-  package { 'django-tagging':
-    ensure => '0.3.1-3.el6',
+  package { 'python-django-tagging':
+    ensure => '0.3.1',
+    require => [Class['localrepo'], Package['python-pip']],
+    provider => 'pip',
+  }
+
+  package { 'python-pip':
+    ensure => present,
     require => Class['localrepo'],
   }
 
