@@ -88,6 +88,11 @@ class learning::quest ($git_branch='release') {
     require => Class['localrepo'],
   }
 
+  package { 'django-tagging':
+    ensure => '0.3.1-3.el6',
+    require => Class['localrepo'],
+  }
+
   file { ['/opt/quest', '/opt/quest/bin', '/opt/quest/gems']:
     ensure => directory,
   }
