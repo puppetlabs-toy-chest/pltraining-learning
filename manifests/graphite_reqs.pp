@@ -6,6 +6,10 @@ class learning::graphite_reqs {
     provider => 'pip',
     require  => Package['python-pip'],
   }
+  package { 'python-devel'
+    provider => 'yum',
+    before   => Package['twisted','django-tagging','txamqp'],
+  }
   package { 'django-tagging':
     ensure => '0.3.1',
   }
