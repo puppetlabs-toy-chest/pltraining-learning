@@ -20,12 +20,12 @@ class learning::graphite_reqs {
     ensure => '0.4',
   }
   package { 'graphite-web':
-    ensure => '0.9.12',
+    ensure => present,
   }
   package { 'carbon':
-    ensure => '0.9.12',
+    ensure => present,
   }
   package { 'whisper':
-    ensure => '0.9.12',
+    ensure => present,
   }
 }
