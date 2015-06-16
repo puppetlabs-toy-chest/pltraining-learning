@@ -88,11 +88,8 @@ class learning::quest ($git_branch='release') {
     require => Class['localrepo'],
   }
 
-  package { 'django-tagging':
-    ensure => '0.3.1',
-    require => [Class['localrepo'], Package['python-pip']],
-    provider => 'pip',
-  }
+  # Pre-install graphite packages
+  include learning::graphite_reqs
 
   package { 'python-pip':
     ensure => present,
