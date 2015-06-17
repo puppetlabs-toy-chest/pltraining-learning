@@ -21,7 +21,6 @@ class learning::graphite_reqs {
   }
   package { 'graphite-web':
     ensure => present,
-    install_options => { 'install-lib' => '/usr/lib/python2.7/site-packages/', 'prefix' => '/usr' },
   }
   package { 'carbon':
     ensure => present,
