@@ -31,7 +31,7 @@ class learning::graphite_reqs {
   # Workaround for package installation target that isn't recognized by
   # pip.
   # https://github.com/graphite-project/carbon/issues/86
-  file { '/usr/lib/python2.6/site-packages/graphite_web-0.9.13-py2.6.egg-info'
+  file { '/usr/lib/python2.6/site-packages/graphite_web-0.9.13-py2.6.egg-info':
     target  => '/opt/graphite/webapp/graphite_web-0.9.13-py2.6.egg-info',
     require => Package['graphite-web'],
     ensure  => link,
