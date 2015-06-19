@@ -36,4 +36,9 @@ class learning::graphite_reqs {
     require => Package['graphite-web'],
     ensure  => link,
   }
+  file { '/usr/lib/python2.6/site-packages/carbon-0.9.12-py2.6.egg-info':
+    target  => '/opt/graphite/lib/carbon-0.9.12-py2.6.egg-info',
+    require => Package['carbon'],
+    ensure  => link,
+  }
 }
