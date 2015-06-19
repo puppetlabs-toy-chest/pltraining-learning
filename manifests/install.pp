@@ -27,4 +27,9 @@ class learning::install {
     require  => Exec['install-pe'],
   }
 
+  # Add the installer files for 32 bit agents
+  # This will prevent errors when puppet runs offline
+
+  include pe_repo::platform::el_6_i386
+
 }
