@@ -27,4 +27,10 @@ class learning::install {
     require  => Exec['install-pe'],
   }
 
+  service {'pe-puppet':
+    ensure  => 'stopped',
+    enabled => 'false',
+    require => Exec['install-pe'],
+  }
+
 }
