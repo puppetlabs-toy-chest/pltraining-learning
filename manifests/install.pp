@@ -29,7 +29,7 @@ class learning::install {
 
   service {'pe-puppet':
     ensure  => 'stopped',
-    enabled => 'false',
+    enable => 'false',
     require => Exec['install-pe'],
   }
 
