@@ -2,25 +2,16 @@
 This is the Puppet Enterprise Learning VM.
 
 This CentOS-based VM comes with Puppet Enterprise pre-installed.
+The Learning VM includes an interactive Quest Guide that will walk
+you through the essentials of Puppet and the Puppet domain specific
+language. This Quest Guide is hosted as a website on the VM itself.
+To get started, navigate to http://<VM's IPADDRESS> on your host machine.
 
-To get started consult the Quest_Guide.pdf contained in the .zip file
-you extracted this VM from.
+To view the Learning VM's current IP address, enter the command
+`facter ipaddress`.
 
-You can download the latest Quest Guide and the quest tool at:
-  - https://downloads.puppetlabs.com/lvmguide/
-A PDF version of the Quest Guide is available in the _site/ directory
-  after the zip file has been extracted
+Feel free to report any bugs to: https://tickets.puppetlabs.com/browse/LEARNVM
 
-To view your current IP address, run `facter ipaddress_eth0`
+Direct any questions or comments to: learningvm@puppetlabs.com
 
-To log in to the Puppet Enterprise console, go to:
-https://<YOUR IP ADDRESS HERE>
-
-  User: admin
-  Password: learningpuppet
-
-Bugs can be reported at: https://tickets.puppetlabs.com/browse/LEARNVM
-
-Questions and Comments: learningvm@puppetlabs.com
-
-Copyright - 2014. Puppet Labs
+Copyright - 2015. Puppet Labs
