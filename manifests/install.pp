@@ -2,13 +2,6 @@ class learning::install {
   
   $prod_module_path = '/etc/puppetlabs/puppet/environments/production/modules'
 
-  # Add script that can print console login. Bootstrap will optionally call this in the rc.local file.
-  file {'/root/.console_login.sh':
-    ensure => file,
-    source => 'puppet:///modules/learning/console_login.sh',
-    mode   => '0755',
-  }
-
   # Put examples in place -- we should have some way to automatically get the
   # most recent from the puppet docs source, where they'll be in
   # source/learning/files/examples.
