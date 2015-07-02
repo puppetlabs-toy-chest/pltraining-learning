@@ -3,6 +3,7 @@ class learning ($git_branch='release') {
   class { '::learning::quest':
     git_branch => $git_branch
   }
+  contain learning::quest
 
   File {
     owner => root,
