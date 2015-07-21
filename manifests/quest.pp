@@ -96,6 +96,13 @@ class learning::quest ($git_branch='release') {
     require => Class['localrepo'],
   }
 
+  file { '/usr/bin/pip-python':
+    ensure  => symlink,
+    target  => '/usr/bin/pip',
+    require => Package['python-pip'],
+    before  => Class['learning::graphite_reqs'],
+  }
+
   file { ['/opt/quest', '/opt/quest/bin', '/opt/quest/gems']:
     ensure => directory,
   }
