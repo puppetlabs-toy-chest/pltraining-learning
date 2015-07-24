@@ -83,7 +83,7 @@ class learning::quest ($git_branch='release') {
   }
 
   file { $doc_root:
-    ensure  => directory,directory
+    ensure  => directory,
     owner   => 'nginx',
     group   => 'nginx',
     mode    => '755',
