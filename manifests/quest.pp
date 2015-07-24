@@ -78,6 +78,10 @@ class learning::quest ($git_branch='release') {
   # Create docroot for lvmguide files, so the website files
   # can be put in place
 
+  file { '/var/www/html':
+    ensure  => directory,
+  }
+
   file { $doc_root:
     ensure  => directory,
     owner   => 'nginx',
