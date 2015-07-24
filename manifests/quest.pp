@@ -80,10 +80,10 @@ class learning::quest ($git_branch='release') {
 
   file { $doc_root:
     ensure  => directory,
-    owner   => 'apache',
-    group   => 'apache',
+    owner   => 'nginx',
+    group   => 'nginx',
     mode    => '755',
-    require => Package['httpd'],
+    require => Package['nginx'],
   }
 
   package { 'tmux':
