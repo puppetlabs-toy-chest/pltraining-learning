@@ -2,7 +2,6 @@ class learning::quest ($git_branch='release') {
   
   $doc_root = '/var/www/html/questguide/'
   $proxy_port = '80'
-  $quest_port = '85'
   $graph_port = '90'
 
   include nginx
@@ -11,31 +10,9 @@ class learning::quest ($git_branch='release') {
     listen_port    => "${proxy_port}",
     listen_options => 'default',
     www_root       => $doc_root,
+    require        => File['doc_root'],
   }
 
-  nginx::resource::location { '/graphite/':
-    vhost => "_",
-    proxy => "http://localhost:${graph_port}",
-  }
-
-  # Create a proxy to pass to the Quest Guide and graphite server
-
-#  apache::vhost { "*:${proxy_port}":
-#    port       => $proxy_port,
-#    docroot    => $doc_root,
-#    proxy_pass => [
-#      { 'path' => '/graphite', 'url' => "http://localhost:${graph_port}"},
-#      { 'path' => '*', 'url' => "http://localhost:${quest_port}"},
-#    ],
-#  }
-#
-#  # Serve the Quest Guide
-#
-#  apache::vhost { "*:${quest_port}":
-#    port    => $quest_port,
-#    docroot => $doc_root,
-#  }
-#
   # Serve Graphite
 
   class { 'apache':
@@ -82,7 +59,8 @@ class learning::quest ($git_branch='release') {
     ensure  => directory,
   }
 
-  file { $doc_root:
+  file { 'doc_root':
+    path    => $doc_root,
     ensure  => directory,
     owner   => 'nginx',
     group   => 'nginx',
