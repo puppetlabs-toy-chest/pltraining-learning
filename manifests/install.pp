@@ -1,6 +1,6 @@
 class learning::install {
   
-  $prod_module_path = '/etc/puppetlabs/puppet/environments/production/modules'
+  $prod_module_path = '/etc/puppetlabs/code/environments/production/modules'
 
   # Put examples in place -- we should have some way to automatically get the
   # most recent from the puppet docs source, where they'll be in
