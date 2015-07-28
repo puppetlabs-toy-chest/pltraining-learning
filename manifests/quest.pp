@@ -121,7 +121,7 @@ class learning::quest ($git_branch='release') {
 
   exec { 'rake update':
     environment => ["GH_BRANCH=${git_branch}"],
-    command     => "/opt/puppet/bin/rake update",
+    command     => "/opt/puppetlabs/puppet/bin/rake update",
     cwd         => '/usr/src/courseware-lvm/',
     require     => [Exec['install-pe'], Exec['install jekyll'], Vcsrepo['/usr/src/courseware-lvm'], Exec['install rspec']],
   }
