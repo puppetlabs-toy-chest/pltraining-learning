@@ -108,8 +108,8 @@ class learning::quest ($git_branch='release') {
   }
 
   exec { 'install jekyll':
-    command => '/opt/puppet/bin/gem install jekyll -i /opt/quest/gems -n /opt/quest/bin --source https://rubygems.org/',
-    creates => '/opt/puppet/bin/jekyll',
+    command => '/opt/puppetlabs/puppet/bin/gem install jekyll -i /opt/quest/gems -n /opt/quest/bin --source https://rubygems.org/',
+    creates => '/opt/puppetlabs/puppet/bin/jekyll',
     require => [File['/opt/quest/bin'], File['/opt/quest/gems'], Package['nodejs']],
   }
 
