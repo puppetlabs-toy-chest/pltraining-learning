@@ -2,32 +2,22 @@ class learning::quest ($git_branch='release') {
   
   $doc_root = '/var/www/html/questguide/'
   $proxy_port = '80'
-  $quest_port = '85'
   $graph_port = '90'
 
-  class { '::apache':
-    default_vhost => false,
-  }
+  include nginx
 
-  # Create a proxy to pass to the Quest Guide and graphite server
-
-  apache::vhost { "*:${proxy_port}":
-    port       => $proxy_port,
-    docroot    => $doc_root,
-    proxy_pass => [
-      { 'path' => '/graphite', 'url' => "http://localhost:${graph_port}"},
-      { 'path' => '*', 'url' => "http://localhost:${quest_port}"},
-    ],
-  }
-
-  # Serve the Quest Guide
-
-  apache::vhost { "*:${quest_port}":
-    port    => $quest_port,
-    docroot => $doc_root,
+  nginx::resource::vhost { "_":
+    listen_port    => "${proxy_port}",
+    listen_options => 'default',
+    www_root       => $doc_root,
+    require        => File['doc_root'],
   }
 
   # Serve Graphite
+
+  class { 'apache':
+    default_vhost => false,
+  }
 
   apache::vhost { "*:${graph_port}":
     manage_docroot => false,
@@ -65,12 +55,17 @@ class learning::quest ($git_branch='release') {
   # Create docroot for lvmguide files, so the website files
   # can be put in place
 
-  file { $doc_root:
+  file { '/var/www/html':
     ensure  => directory,
-    owner   => 'apache',
-    group   => 'apache',
+  }
+
+  file { 'doc_root':
+    path    => $doc_root,
+    ensure  => directory,
+    owner   => 'nginx',
+    group   => 'nginx',
     mode    => '755',
-    require => Package['httpd'],
+    require => Package['nginx'],
   }
 
   package { 'tmux':
