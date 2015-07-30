@@ -28,6 +28,9 @@ class learning::graphite_reqs {
   package { 'whisper':
     ensure => '0.9.12',
   }
+  package { 'python-sqlite3dbm':
+    ensure => '0.1.4-6.el7',
+  }
   # Workaround for package installation target that isn't recognized by
   # pip.
   # https://github.com/graphite-project/carbon/issues/86
