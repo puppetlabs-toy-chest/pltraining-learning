@@ -3,17 +3,15 @@
 
 class learning::graphite_reqs {
   package { 'libffi-devel':
+    provider => 'yum',
     ensure => present,
   }
   package { 'openssl-devel':
+    provider => 'yum',
     ensure => present,
   }
   exec { '/bin/pip install requests[security]':
     require => Package['libffi-devel','openssl-devel'],
-  }
-  Package {
-    provider => 'pip',
-    require  => Package['python-pip'],
   }
   package { 'python-devel':
     provider => 'yum',
@@ -21,25 +19,38 @@ class learning::graphite_reqs {
   }
   package { 'django-tagging':
     ensure => '0.3.1',
+    provider => 'pip',
+    require  => Package['python-pip'],
   }
   package { 'twisted':
     ensure => '11.1.0',
+    provider => 'pip',
+    require  => Package['python-pip'],
   }
   package { 'txamqp':
     ensure => '0.4',
+    provider => 'pip',
+    require  => Package['python-pip'],
   }
   package { 'graphite-web':
     ensure => '0.9.12',
+    provider => 'pip',
+    require  => Package['python-pip'],
   }
   package { 'carbon':
     ensure => '0.9.12',
+    provider => 'pip',
+    require  => Package['python-pip'],
   }
   package { 'whisper':
     ensure => '0.9.12',
+    provider => 'pip',
+    require  => Package['python-pip'],
   }
   package { 'python-sqlite3dbm':
     ensure => '0.1.4-6.el7',
-    require => Exec['/bin/pip install requests[security]'],
+    provider => 'pip',
+    require => [Package['python-pip'],Exec['/bin/pip install requests[security]']],
   }
   # Workaround for package installation target that isn't recognized by
   # pip.
