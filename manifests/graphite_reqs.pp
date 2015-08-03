@@ -2,6 +2,15 @@
 # enable offline use.
 
 class learning::graphite_reqs {
+  package { 'libffi-devel':
+    ensure => present,
+  }
+  package { 'openssl-devel':
+    ensure => present,
+  }
+  exec { '/bin/pip install requests[security]':
+    require => Package['libffi-devel','openssl-devel'],
+  }
   Package {
     provider => 'pip',
     require  => Package['python-pip'],
@@ -30,6 +39,7 @@ class learning::graphite_reqs {
   }
   package { 'python-sqlite3dbm':
     ensure => '0.1.4-6.el7',
+    require => Exec['/bin/pip install requests[security]'],
   }
   # Workaround for package installation target that isn't recognized by
   # pip.
