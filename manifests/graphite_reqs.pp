@@ -3,18 +3,15 @@
 
 class learning::graphite_reqs {
   package { 'libffi-devel':
-    provider => 'yum',
     ensure => present,
   }
   package { 'openssl-devel':
-    provider => 'yum',
     ensure => present,
   }
   exec { '/bin/pip install requests[security]':
     require => Package['libffi-devel','openssl-devel'],
   }
   package { 'python-devel':
-    provider => 'yum',
     before   => Package['twisted','django-tagging','txamqp'],
   }
   package { 'django-tagging':
@@ -49,8 +46,7 @@ class learning::graphite_reqs {
   }
   package { 'python-sqlite3dbm':
     ensure => '0.1.4-6.el7',
-    provider => 'pip',
-    require => [Package['python-pip'],Exec['/bin/pip install requests[security]']],
+    require => Exec['/bin/pip install requests[security]'],
   }
   # Workaround for package installation target that isn't recognized by
   # pip.
