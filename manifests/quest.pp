@@ -22,6 +22,7 @@ class learning::quest ($git_branch='release') {
   apache::vhost { "*:${graph_port}":
     manage_docroot => false,
     port           => $graph_port,
+    servername     => 'learning.puppetlabs.vm',
     docroot        => '/opt/graphite/webapp',
     wsgi_application_group      => '%{GLOBAL}',
     wsgi_daemon_process         => 'graphite',
