@@ -10,8 +10,6 @@ To get started, navigate to http://<VM's IPADDRESS> on your host machine.
 To view the Learning VM's current IP address, enter the command
 `facter ipaddress`.
 
-Feel free to report any bugs to: https://tickets.puppetlabs.com/browse/LEARNVM
-
 Direct any questions or comments to: learningvm@puppetlabs.com
 
 Copyright - 2015. Puppet Labs
