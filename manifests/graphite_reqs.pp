@@ -19,6 +19,11 @@ class learning::graphite_reqs {
     provider => 'pip',
     require  => Package['python-pip'],
   }
+  package { 'django':
+    ensure => '1.5',
+    provider => 'pip',
+    require => Package['python-pip'],
+  }
   package { 'twisted':
     ensure => '11.1.0',
     provider => 'pip',
