@@ -16,8 +16,6 @@ class learning::graphite_reqs {
   }
   package { 'django-tagging':
     ensure => '0.3.1',
-    provider => 'pip',
-    require  => Package['python-pip'],
   }
   package { 'django':
     ensure => '1.5',
@@ -42,8 +40,6 @@ class learning::graphite_reqs {
   }
   package { 'whisper':
     ensure => '0.9.12',
-    provider => 'pip',
-    require  => Package['python-pip'],
   }
   package { 'python-sqlite3dbm':
     ensure => '0.1.4-6.el7',
