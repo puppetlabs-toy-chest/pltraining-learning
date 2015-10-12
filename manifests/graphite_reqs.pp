@@ -36,13 +36,9 @@ class learning::graphite_reqs {
   }
   package { 'graphite-web':
     ensure => '0.9.12',
-    provider => 'pip',
-    require  => Package['python-pip'],
   }
-  package { 'carbon':
+  package { 'python-carbon':
     ensure => '0.9.12',
-    provider => 'pip',
-    require  => Package['python-pip'],
   }
   package { 'whisper':
     ensure => '0.9.12',
