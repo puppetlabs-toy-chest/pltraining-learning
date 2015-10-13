@@ -56,7 +56,7 @@ class learning::graphite_reqs {
     ensure => present,
   }
   package { 'python-devel':
-    before   => Package['twisted','django-tagging','txamqp'],
+    before   => Package['django-tagging'],
   }
   package { 'django-tagging':
     ensure => '0.3.1',
