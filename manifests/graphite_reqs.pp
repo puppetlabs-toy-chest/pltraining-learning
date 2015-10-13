@@ -15,6 +15,8 @@ class learning::graphite_reqs {
     "${pypi_root}/T/Twisted/Twisted-11.1.0.tar.bz2",
     "${pypi_root}/t/txAMQP/txAMQP-0.4.tar.gz",
     "${pypi_root}/g/graphite-web/graphite-web-0.9.12.tar.gz"
+    "${pypi_root}/d/django-tagging/django-tagging-0.3.1.tar.gz"
+    "${pypi_root}/w/whisper/whisper-0.9.12.tar.gz"
   ]
   # wget all the pip packages
   $pip_urls.each | $url | {
@@ -42,14 +44,14 @@ class learning::graphite_reqs {
     priority    => '100',
   }
   file { ['/root/.config', '/root/.config/pip']:
-    ensure => present,
+    ensure => directory,
   }
   file { '/root/.config/pip/pip.conf':
     ensure  => present,
     content => $pip_conf,
   }
   exec { '/bin/pip install requests[security]':
-    require => Package['libffi-devel','openssl-devel'],
+    require => Package['libffi-devel','openssl-devel, python-devel'],
   }
   package { 'libffi-devel':
     ensure => present,
@@ -59,12 +61,6 @@ class learning::graphite_reqs {
   }
   package { 'python-devel':
     before   => Package['django-tagging'],
-  }
-  package { 'django-tagging':
-    ensure => '0.3.1',
-  }
-  package { 'whisper':
-    ensure => '0.9.12',
   }
   package { 'python-sqlite3dbm':
     ensure => '0.1.4-6.el7',
