@@ -15,7 +15,7 @@ class learning::graphite_reqs {
     "${pypi_root}/g/graphite-web/graphite-web-0.9.12.tar.gz"
   ]
   # wget all the pip packages
-  pip_urls.each | $url | {
+  $pip_urls.each | $url | {
     $basename = inline_template('<%= File.basename(@url) %>')
     wget::fetch { $url:
       destination => "${pypi_pkg_dir}/${basename}",
