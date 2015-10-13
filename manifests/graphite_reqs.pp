@@ -4,7 +4,7 @@
 class learning::graphite_reqs {
   include wget
   class { 'supervisord':
-    install_pip => 'true',
+    install_pip => true,
   }
   $pypi_pkg_dir = '/opt/pypiserver/packages'
   #Define the files we need to cache for pip
