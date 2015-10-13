@@ -50,7 +50,7 @@ class learning::graphite_reqs {
     ensure  => present,
     content => $pip_conf,
   }
-  exec { '/bin/pip install requests[security]':
+  exec { '/bin/pip install requests[security] --index "https://pypi.python.org/simple/"':
     require => Package['libffi-devel','openssl-devel', 'python-devel'],
   }
   package { 'libffi-devel':
@@ -64,7 +64,7 @@ class learning::graphite_reqs {
   }
   package { 'python-sqlite3dbm':
     ensure => '0.1.4-6.el7',
-    require => Exec['/bin/pip install requests[security]'],
+    require => Exec['/bin/pip install requests[security] --index "https://pypi.python.org/simple/"'],
   }
 #  package { 'django':
 #    ensure => '1.5',
