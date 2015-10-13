@@ -14,8 +14,8 @@ class learning::graphite_reqs {
     "${pypi_root}/c/carbon/carbon-0.9.12.tar.gz",
     "${pypi_root}/T/Twisted/Twisted-11.1.0.tar.bz2",
     "${pypi_root}/t/txAMQP/txAMQP-0.4.tar.gz",
-    "${pypi_root}/g/graphite-web/graphite-web-0.9.12.tar.gz"
-    "${pypi_root}/d/django-tagging/django-tagging-0.3.1.tar.gz"
+    "${pypi_root}/g/graphite-web/graphite-web-0.9.12.tar.gz",
+    "${pypi_root}/d/django-tagging/django-tagging-0.3.1.tar.gz",
     "${pypi_root}/w/whisper/whisper-0.9.12.tar.gz"
   ]
   # wget all the pip packages
