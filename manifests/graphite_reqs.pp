@@ -51,7 +51,7 @@ class learning::graphite_reqs {
     content => $pip_conf,
   }
   exec { '/bin/pip install requests[security]':
-    require => Package['libffi-devel','openssl-devel, python-devel'],
+    require => Package['libffi-devel','openssl-devel', 'python-devel'],
   }
   package { 'libffi-devel':
     ensure => present,
