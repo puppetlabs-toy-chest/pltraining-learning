@@ -6,9 +6,9 @@ class learning ($git_branch='release') {
   contain learning::quest
 
   File {
-    owner => root,
-    group => root,
-    mode  => 644,
+    owner => 'root',
+    group => 'root',
+    mode  => '644',
   }
   Exec {
     path => [ '/bin', '/usr/bin', '/usr/local/bin' ],
@@ -18,8 +18,8 @@ class learning ($git_branch='release') {
   # Print this info when we log in, too.
   file {'/etc/motd':
     ensure => file,
-    owner  => root,
-    mode   => 0644,
+    owner  => 'root',
+    mode   => '0644',
     source => 'puppet:///modules/learning/README',
   }
 
