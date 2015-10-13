@@ -60,7 +60,7 @@ class learning::graphite_reqs {
     ensure => present,
   }
   package { 'python-devel':
-    before   => Package['django-tagging'],
+    ensure => present,
   }
   package { 'python-sqlite3dbm':
     ensure => '0.1.4-6.el7',
