@@ -25,6 +25,10 @@ class learning::graphite_reqs {
       destination => "${pypi_pkg_dir}/${basename}",
     }
   }
+  package { 'pypiserver':
+    ensure   => present,
+    provider => 'pip',
+  }
   # Define the pip configuration to point to the local server.
   $pip_conf = @(END)
   [global]
@@ -49,6 +53,7 @@ class learning::graphite_reqs {
   file { '/root/.config/pip/pip.conf':
     ensure  => present,
     content => $pip_conf,
+    require => Package['pypiserver'],
   }
   exec { '/bin/pip install requests[security] --index "https://pypi.python.org/simple/"':
     require => Package['libffi-devel','openssl-devel', 'python-devel'],
