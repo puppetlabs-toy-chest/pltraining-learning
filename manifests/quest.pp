@@ -6,6 +6,13 @@ class learning::quest ($git_branch='release') {
 
   include nginx
 
+  file_line { 'disable_nginx_release':
+    path    => '/etc/yum.repos.d/nginx-release.repo',
+    match   => 'enabled',
+    line    => 'enabled=0',
+    require => Class['nginx'],
+  }
+
   nginx::resource::vhost { "_":
     listen_port    => "${proxy_port}",
     listen_options => 'default',
