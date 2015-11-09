@@ -5,7 +5,7 @@ class learning::install {
   file {[ "$prod_module_path", 
           "${prod_module_path}/cowsayings",
           "${prod_module_path}/cowsayings/manifests",
-          "${prod_module_path}/cowsayings/tests",
+          "${prod_module_path}/cowsayings/examples",
         ]: 
     ensure => directory,
     require  => Exec['install-pe'],
