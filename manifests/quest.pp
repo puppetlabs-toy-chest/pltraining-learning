@@ -110,7 +110,7 @@ class learning::quest ($git_branch='release') {
     ensure => directory,
   }
 
-  $rake_gems = ['jekyll','redcarpet','pygments']
+  $rake_gems = ['jekyll','redcarpet','pygments.rb']
   $rake_gems.each |$gem| {
     exec { "install ${gem}":
       command => "/opt/puppetlabs/puppet/bin/gem install ${gem} -i /opt/quest/gems -n /opt/quest/bin --source https://rubygems.org/",
