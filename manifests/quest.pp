@@ -113,6 +113,12 @@ class learning::quest ($git_branch='release') {
   exec { 'install jekyll':
     command => '/opt/puppetlabs/puppet/bin/gem install jekyll -i /opt/quest/gems -n /opt/quest/bin --source https://rubygems.org/',
     creates => '/opt/puppetlabs/puppet/bin/jekyll',
+    require => [File['/opt/quest/bin'], File['/opt/quest/gems'], Package['nodejs'], Exec['install redcarpet']],
+  }
+  
+  exec { 'install redcarpet':
+    command => '/opt/puppetlabs/puppet/bin/gem install redcarpet  -i /opt/quest/gems -n /opt/quest/bin --source https://rubygems.org/',
+    creates => '/opt/puppetlabs/puppet/bin/redcarpet',
     require => [File['/opt/quest/bin'], File['/opt/quest/gems'], Package['nodejs']],
   }
 
