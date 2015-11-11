@@ -110,10 +110,14 @@ class learning::quest ($git_branch='release') {
     ensure => directory,
   }
 
-  exec { 'install jekyll':
-    command => '/opt/puppetlabs/puppet/bin/gem install jekyll -i /opt/quest/gems -n /opt/quest/bin --source https://rubygems.org/',
-    creates => '/opt/puppetlabs/puppet/bin/jekyll',
-    require => [File['/opt/quest/bin'], File['/opt/quest/gems'], Package['nodejs']],
+  $rake_gems = ['jekyll','redcarpet','pygments.rb']
+  $rake_gems.each |$gem| {
+    exec { "install ${gem}":
+      command => "/opt/puppetlabs/puppet/bin/gem install ${gem} -i /opt/quest/gems -n /opt/quest/bin --source https://rubygems.org/",
+      creates => "/opt/puppetlabs/puppet/bin/${gem}",
+      require => [File['/opt/quest/bin'], File['/opt/quest/gems'], Package['nodejs']],
+      before  => Exec['rake update'], 
+    }
   }
 
   vcsrepo { '/usr/src/courseware-lvm':
@@ -126,7 +130,7 @@ class learning::quest ($git_branch='release') {
     environment => ["GH_BRANCH=${git_branch}"],
     command     => "/opt/puppetlabs/puppet/bin/rake update",
     cwd         => '/usr/src/courseware-lvm/',
-    require     => [Exec['install-pe'], Exec['install jekyll'], Vcsrepo['/usr/src/courseware-lvm'], Exec['install rspec']],
+    require     => [Exec['install-pe'], Vcsrepo['/usr/src/courseware-lvm'], Exec['install rspec']],
   }
 
   service { 'puppet':
