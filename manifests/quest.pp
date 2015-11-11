@@ -14,10 +14,18 @@ class learning::quest ($git_branch='release') {
   }
 
   nginx::resource::vhost { "_":
+    ensure         => present,
     listen_port    => "${proxy_port}",
     listen_options => 'default',
     www_root       => $doc_root,
     require        => File['doc_root'],
+  }
+
+  nginx::resource::location { '~ ^/~(.+?)(/.*)?$':
+    ensure         => present,
+    vhost          => '_',
+    location_alias => '/home/$1/public_html$2',
+    autoindex      => true,
   }
 
   # Serve Graphite
