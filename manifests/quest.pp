@@ -25,7 +25,7 @@ class learning::quest ($git_branch='release') {
     ensure         => present,
     vhost          => '_',
     location_alias => '/home/$1/public_html$2',
-    autoindex      => true,
+    autoindex      => 'on',
   }
 
   # Serve Graphite
