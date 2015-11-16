@@ -3,14 +3,18 @@ class multi_node {
   docker::image { 'phusion/baseimage':}
   docker::run { "webserver":
     image            => 'phusion/baseimage',
+    command          => '/sbin/my_init',
     hostname         => "webserver.${::fqdn}",
     extra_parameters => "--add-host puppet:172.17.42.1 --add-host ${::fqdn}:172.17.42.1",
+    volumes          => ['/etc/docker/ssl_dir:/etc/puppetlabs/puppet/ssl'],
     ports            => ['10080:80'],
   }
   docker::run { "database":
-    image    => 'phusion/baseimage',
-    hostname => "database.${::fqdn}",
+    image            => 'phusion/baseimage',
+    command          => '/sbin/my_init',
+    hostname         => "database.${::fqdn}",
     extra_parameters => "--add-host puppet:172.17.42.1 --add-host ${::fqdn}:172.17.42.1",
-    ports    => ['20080:80'],
+    volumes          => ['/etc/docker/ssl_dir:/etc/puppetlabs/puppet/ssl'],
+    ports            => ['23306:3306'],
   }
 }
