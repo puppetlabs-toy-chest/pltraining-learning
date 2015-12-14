@@ -17,4 +17,6 @@ class learning::install {
     require => Exec['install-pe'],
   }
 
+  # Install mutli_node module
+  include learning::multi_node
 }
