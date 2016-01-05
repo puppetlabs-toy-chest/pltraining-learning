@@ -8,6 +8,8 @@ class multi_node {
     extra_parameters => "--add-host puppet:172.17.0.1 --add-host ${::fqdn}:172.17.0.1",
     volumes          => ['/etc/docker/ssl_dir:/etc/puppetlabs/puppet/ssl'],
     ports            => ['10080:80'],
+    links            => ['database:database'],
+    depends          => ['database'],
   }
   docker::run { "database":
     image            => 'phusion/baseimage',
