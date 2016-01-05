@@ -9,7 +9,7 @@ class multi_node {
     volumes          => ['/etc/docker/ssl_dir:/etc/puppetlabs/puppet/ssl'],
     ports            => ['10080:80'],
     links            => ['database:database'],
-    require          => Docker::Run['database']
+    depends          => ['database']
   }
   docker::run { "database":
     image            => 'phusion/baseimage',
