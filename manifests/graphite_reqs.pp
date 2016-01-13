@@ -11,12 +11,12 @@ class learning::graphite_reqs {
   $pypi_root = "https://pypi.python.org/packages/source"
   $pip_urls = [
     "${pypi_root}/D/Django/Django-1.5.tar.gz",
-    "${pypi_root}/c/carbon/carbon-0.9.12.tar.gz",
+    "${pypi_root}/c/carbon/carbon-0.9.15.tar.gz",
     "${pypi_root}/T/Twisted/Twisted-11.1.0.tar.bz2",
     "${pypi_root}/t/txAMQP/txAMQP-0.4.tar.gz",
-    "${pypi_root}/g/graphite-web/graphite-web-0.9.12.tar.gz",
+    "${pypi_root}/g/graphite-web/graphite-web-0.9.15.tar.gz",
     "${pypi_root}/d/django-tagging/django-tagging-0.3.1.tar.gz",
-    "${pypi_root}/w/whisper/whisper-0.9.12.tar.gz"
+    "${pypi_root}/w/whisper/whisper-0.9.15.tar.gz"
   ]
   # wget all the pip packages
   $pip_urls.each | $url | {
