@@ -138,7 +138,7 @@ class learning::quest ($git_branch='release') {
     environment => ["GH_BRANCH=${git_branch}"],
     command     => "/opt/puppetlabs/puppet/bin/rake update",
     cwd         => '/usr/src/courseware-lvm/',
-    require     => [Exec['install-pe'], Vcsrepo['/usr/src/courseware-lvm'], Exec['install rspec']],
+    require     => [ Vcsrepo['/usr/src/courseware-lvm'], Exec['install rspec']],
   }
 
   service { 'puppet':
