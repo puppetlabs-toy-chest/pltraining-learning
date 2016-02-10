@@ -144,7 +144,6 @@ class learning::quest ($git_branch='release') {
   service { 'puppet':
     ensure  => stopped,
     enable  => false,
-    require => Exec['install-pe'],
   }
 
 }
