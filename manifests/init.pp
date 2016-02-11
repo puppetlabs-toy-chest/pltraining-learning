@@ -38,5 +38,7 @@ class learning ($git_branch='release') {
 
   ## Install learning VM specific things
   include learning::install
+  include learning::ssh
+  include learning::set_defaults
 
 }
