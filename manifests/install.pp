@@ -42,7 +42,7 @@ class learning::install {
     ensure => directory,
   }
 
-  service {'pe-puppet':
+  service {['pe-puppet', 'puppet']:
     ensure  => 'stopped',
     enable => 'false',
   }
