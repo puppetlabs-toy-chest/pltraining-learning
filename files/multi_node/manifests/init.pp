@@ -10,6 +10,7 @@ class multi_node {
     ports            => ['10080:80'],
     links            => ['database:database'],
     depends          => ['database'],
+    require          => Docker::Run['database'],
   }
   docker::run { "database":
     image            => 'phusion/baseimage',
