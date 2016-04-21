@@ -30,6 +30,7 @@ class learning::quest_tool {
   file { '/etc/systemd/system/quest.service':
     ensure => file,
     source => 'puppet:///modules/learning/quest.service',
+    mode   => '0644','
   }
 
   service { 'quest':
