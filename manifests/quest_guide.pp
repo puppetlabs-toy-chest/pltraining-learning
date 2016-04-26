@@ -30,7 +30,8 @@ class learning::quest_guide ($git_branch = 'master') {
   }
 
   # This builds html from the quest guide repository
-  exec { '/usr/bin/gitbook install && /usr/bin/gitbook build':
+  exec { 'gitbook build':
+    command => '/usr/bin/gitbook install && /usr/bin/gitbook build',
     cwd     => $content_repo_dir,
     creates => "${content_repo_dir}/_book",
     require => [Vcsrepo[$content_repo_dir], Package['gitbook-cli']],
@@ -41,7 +42,7 @@ class learning::quest_guide ($git_branch = 'master') {
     owner   => 'nginx',
     group   => 'nginx',
     target  => "${content_repo_dir}/_book",
-    require => Exec['/usr/bin/gitbook build'],
+    require => Exec['gitbook build'],
   }
 
 }
