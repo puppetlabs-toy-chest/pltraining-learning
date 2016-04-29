@@ -13,6 +13,7 @@ class learning::pypi_server ( $pypi_dir = '/opt/pypiserver', $pypi_pkg_dir = '/o
 
   class { 'supervisord':
     install_pip => true,
+    setuptools_url => 'https://bootstrap.pypa.io/ez_setup.py',
   }
 
   supervisord::program { 'pypi-server':
