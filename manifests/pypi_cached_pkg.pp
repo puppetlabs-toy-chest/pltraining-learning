@@ -1,4 +1,4 @@
-define learning::pypi_cached_pkg {
+define learning::pypi_cached_pkg ( $pypi_pkg_dir ) {
 
   include wget
 
