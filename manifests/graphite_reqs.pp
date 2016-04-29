@@ -23,6 +23,7 @@ class learning::graphite_reqs ($pypi_dir = '/opt/pypiserver', $pypi_pkg_dir = '/
   #Use our defined resource type to wget all these packages
   $pip_urls.each | $url | {
     learning::pypi_cached_pkg { $url:
+      pypi_pkg_dir => $pypi_pkg_dir,
       require => Class['learning::pypi_server'],
     }
   }
