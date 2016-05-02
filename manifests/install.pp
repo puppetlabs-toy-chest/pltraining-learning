@@ -62,4 +62,12 @@ class learning::install {
     ensure => directory,
   }
 
+  #enable GSSAPIAuthentication so we can disable it in the quest
+  file_line { 'sshd_config':
+    ensure => present,
+    path   => '/etc/ssh/sshd_config',
+    line   => 'GSSAPIAuthentication yes',
+    match  => '^GSSAPIAuthentication',
+  }
+
 }
