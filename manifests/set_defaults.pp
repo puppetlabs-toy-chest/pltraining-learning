@@ -15,7 +15,7 @@ class learning::set_defaults {
   file { '/etc/puppetlabs/code/hieradata/defaults.yaml':
     ensure => file,
     source => 'puppet:///modules/learning/defaults.yaml',
-    require => File['/etc/puppetlabs/puppet/hieradata'],
+    require => File['/etc/puppetlabs/code/hieradata'],
   }
 }
 
