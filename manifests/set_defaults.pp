@@ -5,7 +5,7 @@ class learning::set_defaults {
     path   => '/bin',
     before => File['/etc/puppetlabs/code/hiera.yaml','/etc/puppetlabs/code/hieradata']
   }
-  file { '/etc/puppetlabs/code/hiera.yaml':
+  file { '/etc/puppetlabs/puppet/hiera.yaml':
     ensure  => file,
     source  => 'puppet:///modules/learning/hiera.yaml',
   }
