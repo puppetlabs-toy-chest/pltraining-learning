@@ -1,6 +1,6 @@
 class multi_node {
   include docker
-  docker::image { 'phusion/baseimage':}
+  docker::image { 'phusion/baseimage:0.9.18':}
   docker::run { "webserver":
     image            => 'phusion/baseimage:0.9.18',
     command          => '/sbin/my_init',
