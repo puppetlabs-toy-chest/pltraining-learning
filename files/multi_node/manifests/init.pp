@@ -2,7 +2,7 @@ class multi_node {
   include docker
   docker::image { 'phusion/baseimage':}
   docker::run { "webserver":
-    image            => 'phusion/baseimage',
+    image            => 'phusion/baseimage:0.9.18',
     command          => '/sbin/my_init',
     hostname         => "webserver.${::fqdn}",
     extra_parameters => "--add-host puppet:172.17.0.1 --add-host ${::fqdn}:172.17.0.1",
@@ -13,7 +13,7 @@ class multi_node {
     require          => Docker::Run['database'],
   }
   docker::run { "database":
-    image            => 'phusion/baseimage',
+    image            => 'phusion/baseimage:0.9.18',
     command          => '/sbin/my_init',
     hostname         => "database.${::fqdn}",
     extra_parameters => "--add-host puppet:172.17.0.1 --add-host ${::fqdn}:172.17.0.1",
