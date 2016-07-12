@@ -6,6 +6,9 @@ class learning::install {
   include learning::multi_node
   include pe_repo::platform::ubuntu_1404_amd64
 
+  # Install pltraining-dockeragent module
+  include learning::dockeragent
+
   package { 'python-pip':
     ensure => 'present',
     require => Class['epel'],
