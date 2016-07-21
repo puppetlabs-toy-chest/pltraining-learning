@@ -7,6 +7,7 @@ class learning::install {
   include pe_repo::platform::ubuntu_1404_amd64
 
   # Install pltraining-dockeragent module
+  include docker
   include learning::dockeragent
 
   package { 'python-pip':
