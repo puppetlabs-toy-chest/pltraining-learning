@@ -2,7 +2,7 @@
 Description=Run the quest tool service
 
 [Service]
-ExecStart=/usr/local/bin/questctl start --quest_dir /usr/src/puppet-quest-guide/tests --no-daemonize
+ExecStart=/usr/local/bin/questctl start -q /usr/src/puppet-quest-guide/tests
 
 [Install]
 WantedBy=multi-user.target
