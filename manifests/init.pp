@@ -9,5 +9,6 @@ class learning ($git_branch = 'master') {
   include learning::quest_tool
   include learning::ssh
   include learning::set_defaults
+  include learning::cowsay_directory
 
 }
