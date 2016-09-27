@@ -38,14 +38,6 @@ class learning::install {
 
   # Set up an apache server and vhost to serve graphite
   include learning::graphite_server
- 
-
-  file {[ "$prod_module_path", 
-          "${prod_module_path}/cowsayings",
-          "${prod_module_path}/cowsayings/manifests",
-          "${prod_module_path}/cowsayings/examples"]: 
-    ensure => directory,
-  }
 
   service {['pe-puppet', 'puppet']:
     ensure  => 'stopped',
