@@ -1,4 +1,6 @@
-class learning::quest_tool {
+class learning::quest_tool (
+  $content_repo_dir = '/usr/src/puppet-quest-guide'
+) {
 
   $home = '/root'
 
@@ -29,7 +31,7 @@ class learning::quest_tool {
 
   file { '/etc/systemd/system/quest.service':
     ensure => file,
-    source => 'puppet:///modules/learning/quest.service',
+    source => epp('learning/quest.service.epp', {'content_repo_dir' => $content_repo_dir}),
     mode   => '0644',
   }
 
