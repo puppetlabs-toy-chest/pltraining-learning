@@ -19,6 +19,6 @@ class learning (
   include learning::ssh
   include learning::set_defaults
 
-  if $include_abalone { include abalone }
+  if $include_abalone { include learning::abalone }
 
 }
