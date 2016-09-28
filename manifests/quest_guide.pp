@@ -5,6 +5,7 @@ class learning::quest_guide ($git_branch = 'master') {
   $content_repo_dir   = "/usr/src/${content_repo_name}"
 
   include learning::quest_guide_server
+  include abalone
 
   # Nodejs and npm are required for the GitBook quest guide setup
   class { '::nodejs':
