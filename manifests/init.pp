@@ -13,7 +13,9 @@ class learning (
 
   ## Install learning VM specific things
   include learning::install
-  include learning::quest_tool
+  class { 'learning::quest_tool':
+    content_repo_dir => "/usr/src/${content_repo_name}",
+  }
   include learning::ssh
   include learning::set_defaults
 
