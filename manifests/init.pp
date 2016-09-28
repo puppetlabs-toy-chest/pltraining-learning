@@ -7,8 +7,8 @@ class learning (
 
   class { 'learning::quest_guide':
     git_branch         => $git_branch,
-    content_repo_owner => $content_repo_owner
-    content_repo_name  => $content_repo_name
+    content_repo_owner => $content_repo_owner,
+    content_repo_name  => $content_repo_name,
   }
 
   ## Install learning VM specific things
