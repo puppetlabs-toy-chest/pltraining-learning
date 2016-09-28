@@ -1,4 +1,7 @@
-class learning ($git_branch = 'master') {
+class learning (
+  $git_branch = 'master',
+  $include_abalone = false,  
+) {
 
   class { 'learning::quest_guide':
     git_branch => $git_branch,
@@ -11,4 +14,5 @@ class learning ($git_branch = 'master') {
   include learning::set_defaults
   include learning::cowsay_directory
 
+  if $include_abalone { include abalone }
 }
