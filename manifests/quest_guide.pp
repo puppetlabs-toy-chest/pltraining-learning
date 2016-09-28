@@ -1,7 +1,7 @@
 class learning::quest_guide (
-  $git_branch = 'master'
-  $content_repo_owner = 'puppetlabs'
-  $content_repo_name  = 'puppet-quest-guide'
+  $git_branch = 'master',
+  $content_repo_owner = 'puppetlabs',
+  $content_repo_name  = 'puppet-quest-guide',
 ) {
 
   $content_repo_dir   = "/usr/src/${content_repo_name}"
