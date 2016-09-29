@@ -31,7 +31,7 @@ class learning::quest_tool (
 
   file { '/etc/systemd/system/quest.service':
     ensure  => file,
-    content => epp('learning/quest.service.epp', {'content_repo_dir' => $content_repo_dir}),
+    content => epp('learning/quest.service.epp', {'test_dir' => "${content_repo_dir}/tests"}),
     mode    => '0644',
   }
 

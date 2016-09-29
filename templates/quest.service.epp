@@ -2,7 +2,7 @@
 Description=Run the quest tool service
 
 [Service]
-ExecStart=/usr/local/bin/questctl start -q <%= $content_repo_dir %>
+ExecStart=/usr/local/bin/questctl start -q <%= $test_dir %>
 
 [Install]
 WantedBy=multi-user.target
