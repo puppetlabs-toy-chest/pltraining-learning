@@ -9,9 +9,9 @@ class learning::ssh {
   augeas { "disable_key_checking":
     context => '/files/etc/ssh/ssh_config',
     changes =>
-      ["set Host[.='*.learning.puppetlabs.vm'] *.learning.puppetlabs.vm",
-       "set Host[.='*.learning.puppetlabs.vm']/StrictHostKeyChecking no",
-       "set Host[.='*.learning.puppetlabs.vm']/UserKnownHostsFile /dev/null"],
+      ["set Host[.='*.puppet.vm'] *.learning.puppetlabs.vm",
+       "set Host[.='*.puppet.vm']/StrictHostKeyChecking no",
+       "set Host[.='*.puppet.vm']/UserKnownHostsFile /dev/null"],
     require => Package['ruby_augeas_lib'],
   }
 
