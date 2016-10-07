@@ -3,6 +3,7 @@ class learning (
   $content_repo_owner = 'puppetlabs',
   $content_repo_name  = 'puppet-quest-guide',
   $include_abalone    = false,
+  $autosign_value     = false,
 ) {
 
   class { 'learning::quest_guide':
@@ -20,5 +21,12 @@ class learning (
   include learning::set_defaults
 
   if $include_abalone { include learning::abalone }
+
+  if $autosign_value {
+    file_line { "autosign":
+      path => '/etc/puppetlabs/puppet/autosign.conf',
+      line => $autosign_value,
+    }
+  }
 
 }
