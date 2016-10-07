@@ -1,6 +1,8 @@
 class learning::abalone {
 
-  include ::abalone
+  class { '::abalone':
+    bannerfile => '/etc/issue',
+  }
 
   file_line { 'pam_securetty':
     path  => '/etc/pam.d/login',
