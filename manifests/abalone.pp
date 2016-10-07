@@ -2,11 +2,10 @@ class learning::abalone {
 
   include ::abalone
 
-  range("0","15").each |Integer $number| {
-    file_line { "securetty_pts_${number}":
-      path => '/etc/securetty',
-      line => "pts/${number}"
-    }
+  file_line { 'pam_securetty':
+    path  => '/etc/pam.d/login',
+    line  => '#auth [user_unknown=ignore success=ok ignore default=bad] pam_security.so',
+    match => 'pam_securetty.so$',
   }
 
 }
