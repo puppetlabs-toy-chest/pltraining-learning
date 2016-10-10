@@ -1,6 +1,7 @@
 class learning::abalone {
 
-  class { '::abalone':
+  class { 'abalone':
+    port       => '9090',
     bannerfile => '/etc/issue',
   }
 
