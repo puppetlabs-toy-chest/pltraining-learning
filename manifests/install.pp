@@ -62,6 +62,7 @@ class learning::install {
   file { '/root/bin/reset_demo':
     ensure => 'file',
     owner  => 'root',
+    mode   => '0500',
     source => 'puppet:///modules/learning/reset_demo',
   }
 
