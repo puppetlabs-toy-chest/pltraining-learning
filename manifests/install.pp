@@ -59,6 +59,12 @@ class learning::install {
     ensure => directory,
   }
 
+  file { '/root/bin/reset_demo':
+    ensure => 'file',
+    owner  => 'root',
+    source => 'puppet:///modules/learning/reset_demo',
+  }
+
   #enable GSSAPIAuthentication so we can disable it in the quest
   file_line { 'sshd_config':
     ensure => present,
