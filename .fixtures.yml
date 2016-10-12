@@ -1,0 +1,38 @@
+fixtures:
+  symlinks:
+    learning: "#{source_dir}"
+  repositories:
+    pe_repo: "git@github.com:puppetlabs/puppetlabs-pe_repo.git"
+    pe_staging: "git@github.com:puppetlabs/puppetlabs-pe_staging.git"
+    puppet_enterprise: "git@github.com:puppetlabs/puppetlabs-puppet_enterprise.git"
+    bootstrap: "git@github.com:puppetlabs/pltraining-bootstrap.git"
+    dockeragent: "git@github.com:puppetlabs/pltraining-dockeragent.git"
+    localrepo: "git@github.com:puppetlabs/pltraining-localrepo.git"
+  forge_modules:
+    stdlib:
+      repo: "puppetlabs/stdlib"
+      ref: "4.12.0"
+    concat:
+      repo: "puppetlabs/concat"
+      ref: "2.2.0"
+    apache:
+      repo: "puppetlabs/apache"
+      ref: "1.10.0"
+    epel:
+      repo: "stahnma/epel"
+      ref: "1.2.2"
+    wget:
+      repo: 'maestrodev/wget'
+      ref: '1.7.3'
+    docker:
+      repo: "garethr/docker"
+      ref: "5.3.0"
+    supervisord:
+      repo: "ajcrowe/supervisord"
+      ref: "0.6.1"
+    nginx:
+      repo: "puppet/nginx"
+    nodejs:
+      repo: "puppet/nodejs"
+    vcsrepo:
+      repo: "puppetlabs/vcsrepo"
