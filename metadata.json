@@ -34,8 +34,8 @@
     {"name":"garethr/docker",                            "version_requirement":">= 5.3.0"},
     {"name":"ajcrowe/supervisord",                       "version_requirement":">= 0.6.1"},
     {"name":"puppet/nginx",                              "version_requirement":">= 0.4.0"},
-    {"name":"puppet/nodejs"                              "version_requirement":">= 2.1.0"},
-    {"name":"puppetlabs/vcsrepo"                         "version_requirement":">= 1.4.0"},
+    {"name":"puppet/nodejs",                             "version_requirement":">= 2.1.0"},
+    {"name":"puppetlabs/vcsrepo",                        "version_requirement":">= 1.4.0"},
     {"name":"puppetlabs/pe_repo"},
     {"name":"puppetlabs/pe_staging"},
     {"name":"pltraining/dockeragent",                    "version_requirement":">= 0.0.11"}
