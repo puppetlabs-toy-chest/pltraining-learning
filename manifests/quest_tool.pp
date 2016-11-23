@@ -26,7 +26,6 @@ class learning::quest_tool (
 
   package { 'quest':
     provider => gem,
-    source   => 'http://rubygems.delivery.puppetlabs.net/',
   }
 
   file { '/etc/systemd/system/quest.service':
