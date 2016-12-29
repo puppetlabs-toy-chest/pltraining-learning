@@ -36,3 +36,5 @@ fixtures:
       repo: "puppet/nodejs"
     vcsrepo:
       repo: "puppetlabs/vcsrepo"
+    abalone:
+      repo: "binford2k/abalone"

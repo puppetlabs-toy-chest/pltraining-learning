@@ -24,7 +24,7 @@ describe "learning" do
     :architecture              => 'x86_64',
   } }
 
-  let(:pre_condition) do
+  let(:pre_condition) {
     <<-EOF
       include pe_repo
       include localrepo
@@ -33,8 +33,24 @@ describe "learning" do
       include bootstrap::profile::ruby
       include bootstrap::profile::cache_gems
     EOF
-  end
+  }
 
   it { is_expected.to compile }
+
+  it {
+    is_expected.to contain_class("learning::quest_guide")
+      .with({
+        'git_branch'         => 'master',
+        'content_repo_owner' => 'puppetlabs',
+        'content_repo_name'  => 'puppet-quest-guide',
+      })
+  }
+
+  it {
+    is_expected.to contain_class("learning::quest_tool")
+      .with({
+        'content_repo_dir' => '/usr/src/puppet-quest-guide',
+      })
+  }
 
 end

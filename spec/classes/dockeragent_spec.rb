@@ -21,4 +21,11 @@ describe "learning::dockeragent" do
 
   it { is_expected.to compile.with_all_deps }
 
+  it { is_expected.to contain_class("dockeragent")
+    .with({
+      'create_no_agent_image' => true,
+      'lvm_bashrc'            => true,
+    })
+  }
+
 end

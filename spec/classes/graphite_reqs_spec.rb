@@ -32,4 +32,110 @@ describe "learning::graphite_reqs" do
 
   it { is_expected.to compile.with_all_deps }
 
+  it {
+    is_expected.to contain_learning__pypi_cached_pkg(
+      "https://pypi.python.org/packages/source/D/Django/Django-1.5.tar.gz")
+      .with({
+        'pypi_pkg_dir' => '/opt/pypiserver/packages',
+      }).that_requires("Class[learning::pypi_server]")
+  }
+
+  it {
+    is_expected.to contain_learning__pypi_cached_pkg(
+      "https://pypi.python.org/packages/source/c/carbon/carbon-0.9.15.tar.gz")
+      .with({
+        'pypi_pkg_dir' => '/opt/pypiserver/packages',
+      }).that_requires("Class[learning::pypi_server]")
+  }
+
+  it {
+    is_expected.to contain_learning__pypi_cached_pkg(
+      "https://pypi.python.org/packages/source/T/Twisted/Twisted-11.1.0.tar.bz2")
+      .with({
+        'pypi_pkg_dir' => '/opt/pypiserver/packages',
+      }).that_requires("Class[learning::pypi_server]")
+  }
+
+  it {
+    is_expected.to contain_learning__pypi_cached_pkg(
+      "https://pypi.python.org/packages/source/t/txAMQP/txAMQP-0.4.tar.gz")
+      .with({
+        'pypi_pkg_dir' => '/opt/pypiserver/packages',
+      }).that_requires("Class[learning::pypi_server]")
+  }
+
+  it {
+    is_expected.to contain_learning__pypi_cached_pkg(
+      "https://pypi.python.org/packages/source/g/graphite-web/graphite-web-0.9.15.tar.gz")
+      .with({
+        'pypi_pkg_dir' => '/opt/pypiserver/packages',
+      }).that_requires("Class[learning::pypi_server]")
+  }
+
+  it {
+    is_expected.to contain_learning__pypi_cached_pkg(
+      "https://pypi.python.org/packages/source/d/django-tagging/django-tagging-0.3.1.tar.gz")
+      .with({
+        'pypi_pkg_dir' => '/opt/pypiserver/packages',
+      }).that_requires("Class[learning::pypi_server]")
+  }
+
+  it {
+    is_expected.to contain_learning__pypi_cached_pkg(
+      "https://pypi.python.org/packages/source/w/whisper/whisper-0.9.15.tar.gz")
+      .with({
+        'pypi_pkg_dir' => '/opt/pypiserver/packages',
+      }).that_requires("Class[learning::pypi_server]")
+  }
+
+  it {
+    is_expected.to contain_package("libffi-devel")
+      .with({
+        'ensure' => 'present',
+      })
+  }
+
+  it {
+    is_expected.to contain_package("openssl-devel")
+      .with({
+        'ensure' => 'present',
+      })
+  }
+
+  it {
+    is_expected.to contain_package("python-devel")
+      .with({
+        'ensure' => 'present',
+      })
+  }
+
+  it {
+    is_expected.to contain_exec("install requests[security]")
+      .with({
+        "command" => "/bin/pip install requests[security] --index \"https://pypi.python.org/simple/\"",
+      }).that_requires("Package[libffi-devel]")
+  }
+
+  it {
+    is_expected.to contain_exec("install requests[security]")
+      .with({
+        "command" => "/bin/pip install requests[security] --index \"https://pypi.python.org/simple/\"",
+      }).that_requires("Package[openssl-devel]")
+  }
+
+  it {
+    is_expected.to contain_exec("install requests[security]")
+      .with({
+        "command" => "/bin/pip install requests[security] --index \"https://pypi.python.org/simple/\"",
+      }).that_requires("Package[python-devel]")
+  }
+
+  it {
+    is_expected.to contain_package("python-sqlite3dbm")
+      .with({
+        'ensure' => '0.1.4-6.el7',
+        'require' => 'Exec[install requests[security]]',
+      })
+  }
+
 end
