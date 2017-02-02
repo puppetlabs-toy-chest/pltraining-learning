@@ -23,18 +23,18 @@ class learning::install {
   }
 
   # This class sets up a local pypi server so we can run offline
-  class { 'learning::pypi_server':
-    pypi_dir     => '/opt/pypiserver',
-    pypi_pkg_dir => '/opt/pypiserver/packages',
-    require      => File['/usr/bin/pip-python'],
-  }
+  #class { 'learning::pypi_server':
+  #  pypi_dir     => '/opt/pypiserver',
+  #  pypi_pkg_dir => '/opt/pypiserver/packages',
+  #  require      => File['/usr/bin/pip-python'],
+  #}
 
   # Install or cache everything we need for graphite
-  class { 'learning::graphite_reqs':
-    pypi_dir     => '/opt/pypiserver',
-    pypi_pkg_dir => '/opt/pypiserver/packages',
-    require      => Class['learning::pypi_server'],
-  }
+  #class { 'learning::graphite_reqs':
+  #  pypi_dir     => '/opt/pypiserver',
+  #  pypi_pkg_dir => '/opt/pypiserver/packages',
+  #  require      => Class['learning::pypi_server'],
+  #}
 
   # Set up an apache server and vhost to serve graphite
   include learning::graphite_server
