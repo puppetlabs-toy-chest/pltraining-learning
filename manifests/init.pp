@@ -19,6 +19,7 @@ class learning (
   }
   include learning::ssh
   include learning::set_defaults
+  include stickler
 
   if $include_abalone { include learning::abalone }
 
