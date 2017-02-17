@@ -22,7 +22,7 @@ class learning::stickler(
     provider => 'gem',
   }
   $stickler_server_hash = {
-    'upstream' => 'http://rubygems/org',
+    'upstream' => 'http://rubygems.org',
     'server'   => 'http://localhost:6789'
   }
   file { '/root/.gem/stickler':
