@@ -13,6 +13,9 @@ class learning::stickler(
   service { 'stickler':
     ensure => running,
   }
+  exec { '/usr/bin/gem update --system':
+    before => Package['stickler'],
+  }
   package { 'stickler':
     ensure   => present,
     provider => 'gem',
